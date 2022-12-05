@@ -62,7 +62,7 @@ public class UserService : IUserService
 
     public async Task<ListResponse<UserDto>> GetListUsersByPage(int page)
     {
-        var result = await _httpClientService.SendAsync<ListResponse<UserDto>, object>($"{_options.Host}{_userApi}?page{page}", HttpMethod.Get);
+        var result = await _httpClientService.SendAsync<ListResponse<UserDto>, object>($"{_options.Host}{_userApi}?page={page}", HttpMethod.Get);
 
         if (result != null)
         {
@@ -90,6 +90,22 @@ public class UserService : IUserService
         if (result != null)
         {
             _logger.LogInformation($"User with id = {result?.Id} was updated");
+        }
+
+        return result!;
+    }
+
+    public async Task<ListResponse<UserDto>> GetListUsersDelay(int delay)
+    {
+        var result = await _httpClientService.SendAsync<ListResponse<UserDto>, object>($"{_options.Host}{_userApi}?delay={delay}", HttpMethod.Get);
+
+        if (result != null)
+        {
+            _logger.LogInformation($"Users was found");
+        }
+        else
+        {
+            _logger.LogInformation($"Users was not found");
         }
 
         return result!;

@@ -32,6 +32,7 @@ namespace Module5HW1
                 .AddTransient<IInternalHttpClientService, InternalHttpClientService>()
                 .AddTransient<IUserService, UserService>()
                 .AddTransient<IResourceService, ResourceService>()
+                .AddTransient<IAutorizeService, AutorizeService>()
                 .AddTransient<App>();
         }
     }
