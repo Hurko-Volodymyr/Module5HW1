@@ -110,4 +110,19 @@ public class UserService : IUserService
 
         return result!;
     }
+
+    public async Task<bool> DeleteUser(int id)
+    {
+        var status = false;
+        var result = await _httpClientService.SendAsync<UserResponse, UserRequest>(
+            $"{_options.Host}{_userApi}",
+            HttpMethod.Delete);
+        if (result == null)
+        {
+            _logger.LogInformation($"User with id = {id} was deleted");
+            status = true;
+        }
+
+        return status;
+    }
 }

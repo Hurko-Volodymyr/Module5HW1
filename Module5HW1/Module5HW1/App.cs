@@ -22,6 +22,7 @@ namespace Module5HW1
             var users = await _userService.GetListUsersByPage(2);
             var usersDelay = await _userService.GetListUsersDelay(3);
             var userUpdate = await _userService.UpdateUser(2, "morpheus", "zion resident");
+            var userDelete = await _userService.DeleteUser(2);
 
             var resource = await _resourceService.GetResourceById(2);
             var resourceNotFound = await _resourceService.GetResourceById(23);
